@@ -1,23 +1,80 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
+import type {
+  ActivityLevel,
+  TemperaturePreference,
+  TransportBudget,
+  TransportPreference,
+  TravelTolerance,
+  TripPreferences,
+  TripVibe,
+  WeatherPreference,
+} from '../types/trip'
+
 
 function TripSetupPage() {
   const [origin, setOrigin] = useState('')
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
-  const [travelTolerance, setTravelTolerance] = useState('')
-  const [transportBudget, setTransportBudget] = useState('')
-  const [transportPreference, setTransportPreference] = useState('')
-  const [temperaturePreference, setTemperaturePreference] = useState('')
-  const [weatherPreferences, setWeatherPreferences] = useState<string[]>([])
-  const [tripVibes, setTripVibes] = useState<string[]>([])
-  const [activityLevel, setActivityLevel] = useState('')
+  const [travelTolerance, setTravelTolerance] =
+    useState<TravelTolerance | ''>('')
+  const [transportBudget, setTransportBudget] =
+    useState<TransportBudget | ''>('')
+  const [transportPreference, setTransportPreference] =
+    useState<TransportPreference | ''>('')
+  const [temperaturePreference, setTemperaturePreference] =
+    useState<TemperaturePreference | ''>('')
+  const [weatherPreferences, setWeatherPreferences] =
+    useState<WeatherPreference[]>([])
+  const [tripVibes, setTripVibes] =
+    useState<TripVibe[]>([])
+  const [activityLevel, setActivityLevel] =
+    useState<ActivityLevel | ''>('')
+
+useEffect(() => {
+  const savedPreferences = localStorage.getItem(
+    'tripgenda-trip-preferences'
+  )
+
+  if (!savedPreferences) {
+    return
+  }
+
+  try {
+    const parsedPreferences: TripPreferences =
+      JSON.parse(savedPreferences)
+
+    setOrigin(parsedPreferences.origin)
+    setStartDate(parsedPreferences.startDate)
+    setEndDate(parsedPreferences.endDate)
+
+    setTravelTolerance(parsedPreferences.travelTolerance)
+    setTransportBudget(parsedPreferences.transportBudget)
+    setTransportPreference(parsedPreferences.transportPreference)
+
+    setTemperaturePreference(parsedPreferences.temperaturePreference)
+    setWeatherPreferences(parsedPreferences.weatherPreferences)
+
+    setTripVibes(parsedPreferences.tripVibes)
+    setActivityLevel(parsedPreferences.activityLevel)
+  } catch {
+    localStorage.removeItem('tripgenda-trip-preferences')
+  }
+}, [])
   
 
   const hasValidDates =
     startDate !== '' &&
     endDate !== '' &&
     endDate >= startDate
+
+  const tripLength = hasValidDates
+    ? Math.floor(
+        (new Date(`${endDate}T00:00:00`).getTime() -
+            new Date(`${startDate}T00:00:00`).getTime()) /
+            (1000 * 60 * 60 * 24)
+        ) + 1
+    : 0
 
   const canContinue =
     origin.trim() !== '' &&
@@ -29,13 +86,38 @@ function TripSetupPage() {
     tripVibes.length > 0 &&
     activityLevel != ''
 
-    const tripLength = hasValidDates
-    ? Math.floor(
-        (new Date(`${endDate}T00:00:00`).getTime() -
-            new Date(`${startDate}T00:00:00`).getTime()) /
-            (1000 * 60 * 60 * 24)
-        ) + 1
-    : 0
+    const tripPreferences: TripPreferences | null = canContinue
+    ? {
+        origin: origin.trim(),
+
+        startDate,
+        endDate,
+        tripLength,
+
+        travelTolerance,
+        transportBudget,
+        transportPreference,
+
+        temperaturePreference,
+        weatherPreferences,
+
+        tripVibes,
+        activityLevel,
+        }
+    : null
+
+  function handleContinue() {
+    if (!tripPreferences) {
+        return
+    }
+
+    localStorage.setItem(
+        'tripgenda-trip-preferences',
+        JSON.stringify(tripPreferences)
+    )
+    }
+
+
 
   return (
     <div className="app">
@@ -164,13 +246,13 @@ function TripSetupPage() {
             </div>
 
             <div className="budget-options">
-                {[
-                { value: '100', label: 'Under $100' },
-                { value: '250', label: '$100–250' },
-                { value: '500', label: '$250–500' },
-                { value: '500+', label: '$500+' },
-                { value: 'flexible', label: 'Flexible' },
-                ].map((budget) => (
+                {([
+                    { value: '100', label: 'Under $100' },
+                    { value: '250', label: '$100–250' },
+                    { value: '500', label: '$250–500' },
+                    { value: '500+', label: '$500+' },
+                    { value: 'flexible', label: 'Flexible' },
+                ] satisfies { value: TransportBudget; label: string }[]).map((budget) => (
                 <button
                     className={`budget-option ${
                     transportBudget === budget.value ? 'selected' : ''
@@ -246,13 +328,18 @@ function TripSetupPage() {
             </div>
 
             <div className="temperature-options">
-                {[
+                {([
                     { value: 'cool', label: 'Cool', detail: 'Below 60°F', icon: '🧥' },
                     { value: 'mild', label: 'Mild', detail: '60–72°F', icon: '🌤️' },
                     { value: 'warm', label: 'Warm', detail: '73–84°F', icon: '☀️' },
                     { value: 'hot', label: 'Hot', detail: '85°F+', icon: '🌴' },
                     { value: 'any', label: 'Any', detail: 'No preference', icon: '✦' },
-                ].map((temperature) => (
+                    ] satisfies {
+                    value: TemperaturePreference
+                    label: string
+                    detail: string
+                    icon: string
+                    }[]).map((temperature) => (
                 <button
                     className={`temperature-option ${
                     temperaturePreference === temperature.value ? 'selected' : ''
@@ -272,12 +359,16 @@ function TripSetupPage() {
                 <p>Anything you especially want?</p>
 
                 <div className="weather-condition-options">
-                    {[
-                    { value: 'sunny', label: 'Sunny', icon: '☀️' },
-                    { value: 'snowy', label: 'Snowy', icon: '❄️' },
-                    { value: 'rain-ok', label: "Rain's okay", icon: '🌧️' },
-                    { value: 'dont-care', label: "Don't care", icon: '✦' },
-                    ].map((weather) => (
+                    {([
+                        { value: 'sunny', label: 'Sunny', icon: '☀️' },
+                        { value: 'snowy', label: 'Snowy', icon: '❄️' },
+                        { value: 'rain-ok', label: "Rain's okay", icon: '🌧️' },
+                        { value: 'dont-care', label: "Don't care", icon: '✦' },
+                        ] satisfies {
+                        value: WeatherPreference
+                        label: string
+                        icon: string
+                        }[]).map((weather) => (
                     <button
                         className={`weather-condition ${
                         weatherPreferences.includes(weather.value) ? 'selected' : ''
@@ -322,16 +413,20 @@ function TripSetupPage() {
             </div>
 
             <div className="vibe-options">
-                {[
-                { value: 'beach', label: 'Beach', icon: '☀️' },
-                { value: 'mountains', label: 'Mountains', icon: '⛰️' },
-                { value: 'city', label: 'City', icon: '🏙️' },
-                { value: 'nature', label: 'Nature', icon: '🌲' },
-                { value: 'food', label: 'Food', icon: '🍜' },
-                { value: 'relaxing', label: 'Relaxing', icon: '🌿' },
-                { value: 'adventure', label: 'Adventure', icon: '🥾' },
-                { value: 'quick-getaway', label: 'Quick getaway', icon: '🚙' },
-                ].map((vibe) => (
+                {([
+                    { value: 'beach', label: 'Beach', icon: '☀️' },
+                    { value: 'mountains', label: 'Mountains', icon: '⛰️' },
+                    { value: 'city', label: 'City', icon: '🏙️' },
+                    { value: 'nature', label: 'Nature', icon: '🌲' },
+                    { value: 'food', label: 'Food', icon: '🍜' },
+                    { value: 'relaxing', label: 'Relaxing', icon: '🌿' },
+                    { value: 'adventure', label: 'Adventure', icon: '🥾' },
+                    { value: 'quick-getaway', label: 'Quick getaway', icon: '🚙' },
+                    ] satisfies {
+                    value: TripVibe
+                    label: string
+                    icon: string
+                    }[]).map((vibe) => (
                 <button
                     className={`vibe-option ${
                     tripVibes.includes(vibe.value) ? 'selected' : ''
@@ -367,32 +462,37 @@ function TripSetupPage() {
             </div>
 
             <div className="activity-options">
-                {[
-                {
-                    value: 'relaxed',
-                    label: 'Relaxed',
-                    detail: 'Slow mornings and plenty of free time.',
-                    icon: '🌿',
-                },
-                {
-                    value: 'balanced',
-                    label: 'Balanced',
-                    detail: 'A good mix of plans and breathing room.',
-                    icon: '☀️',
-                },
-                {
-                    value: 'active',
-                    label: 'Active',
-                    detail: 'Pack the day and see as much as possible.',
-                    icon: '⚡',
-                },
-                {
-                    value: 'any',
-                    label: 'Any',
-                    detail: "I'm flexible with the pace.",
-                    icon: '✦',
-                },
-                ].map((level) => (
+                {([
+                    {
+                        value: 'relaxed',
+                        label: 'Relaxed',
+                        detail: 'Slow mornings and plenty of free time.',
+                        icon: '🌿',
+                    },
+                    {
+                        value: 'balanced',
+                        label: 'Balanced',
+                        detail: 'A good mix of plans and breathing room.',
+                        icon: '☀️',
+                    },
+                    {
+                        value: 'active',
+                        label: 'Active',
+                        detail: 'Pack the day and see as much as possible.',
+                        icon: '⚡',
+                    },
+                    {
+                        value: 'any',
+                        label: 'Any',
+                        detail: "I'm flexible with the pace.",
+                        icon: '✦',
+                    },
+                    ] satisfies {
+                    value: ActivityLevel
+                    label: string
+                    detail: string
+                    icon: string
+                    }[]).map((level) => (
                 <button
                     className={`activity-option ${
                     activityLevel === level.value ? 'selected' : ''
@@ -418,9 +518,10 @@ function TripSetupPage() {
             className="continue-button"
             type="button"
             disabled={!canContinue}
+            onClick={handleContinue}
             >
             Continue <span>→</span>
-        </button>
+            </button>
         </div>
       </main>
     </div>
