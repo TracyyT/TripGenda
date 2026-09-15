@@ -563,6 +563,18 @@
   .see-more-button {
     margin-top: 5px;
   }
+
+  .trip-setup-page {
+    padding: 55px 20px 80px;
+  }
+
+  .trip-setup-card {
+    padding: 22px;
+  }
+
+  .date-fields {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* =========================================================
@@ -736,4 +748,157 @@
 
   font-size: 0.9rem;
   line-height: 1.5;
+}
+
+/* =========================================================
+   TRIP SETUP
+   ========================================================= */
+
+.trip-setup-page {
+  max-width: 850px;
+
+  margin: 0 auto;
+  padding: 80px 6% 110px;
+}
+
+.trip-setup-header {
+  margin-bottom: 35px;
+}
+
+.trip-setup-header h1 {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.trip-setup-header > p:last-child {
+  margin: 16px 0 0;
+
+  color: var(--color-muted);
+
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+
+/* Setup card */
+
+.trip-setup-card {
+  padding: 32px;
+
+  border: 1px solid #ead7ba;
+  border-radius: 22px;
+
+  background: var(--color-surface);
+
+  box-shadow: 0 12px 35px rgba(81, 54, 41, 0.07);
+}
+
+
+/* Fields */
+
+.setup-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.setup-field label {
+  color: var(--color-text);
+
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.setup-hint {
+  margin: 5px 0 10px;
+
+  color: var(--color-muted);
+
+  font-size: 0.8rem;
+}
+
+.setup-field input {
+  width: 100%;
+
+  padding: 14px 15px;
+
+  border: 1px solid #dfc9a8;
+  border-radius: 12px;
+
+  outline: none;
+
+  background: var(--color-background);
+  color: var(--color-text);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.setup-field input:focus {
+  border-color: var(--color-orange);
+
+  box-shadow: 0 0 0 3px rgba(239, 161, 95, 0.16);
+}
+
+
+/* Dates */
+
+.date-fields {
+  margin-top: 25px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+
+/* Continue */
+
+.continue-button {
+  margin-top: 30px;
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 20px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: var(--color-orange);
+  color: var(--color-dark-brown);
+
+  font-weight: 800;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.continue-button:hover {
+  background: var(--color-yellow);
+
+  transform: translateY(-1px);
+}
+
+.continue-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.trip-length {
+  margin: 14px 0 0;
+
+  color: var(--color-soft-brown);
+
+  font-size: 0.85rem;
+  font-weight: 700;
 }
