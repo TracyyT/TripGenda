@@ -286,6 +286,190 @@
   transform: translateY(-1px);
 }
 
+/* =========================================================
+   DESTINATIONS
+   ========================================================= */
+
+.destinations {
+  padding: 85px 6% 110px;
+
+  background: var(--color-background);
+}
+
+.see-more-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 14px;
+
+  border: 1px solid #e5cda9;
+  border-radius: 999px;
+
+  background: transparent;
+  color: var(--color-brown);
+
+  font-size: 0.85rem;
+  font-weight: 700;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.see-more-button:hover {
+  background: var(--color-surface);
+  border-color: var(--color-orange);
+}
+
+
+/* Destination grid */
+
+.destination-grid {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.destination-card {
+  overflow: hidden;
+
+  border: 1px solid #ead7ba;
+  border-radius: 18px;
+
+  background: var(--color-surface);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.destination-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 14px 30px rgba(81, 54, 41, 0.1);
+}
+
+
+/* Photo */
+
+.destination-photo {
+  height: 230px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.destination-photo img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition: transform 0.4s ease;
+}
+
+.destination-card:hover .destination-photo img {
+  transform: scale(1.04);
+}
+
+.save-button {
+  width: 36px;
+  height: 36px;
+
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 248, 236, 0.92);
+  color: var(--color-brown);
+
+  font-size: 1.25rem;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.save-button:hover {
+  background: var(--color-yellow);
+  transform: scale(1.05);
+}
+
+
+/* Destination information */
+
+.destination-info {
+  padding: 18px;
+}
+
+.destination-state {
+  margin: 0 0 4px;
+
+  color: var(--color-orange);
+
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.destination-info h3 {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size: 1.3rem;
+}
+
+.destination-description {
+  min-height: 44px;
+
+  margin: 8px 0 15px;
+
+  color: var(--color-muted);
+
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.destination-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.destination-tags span {
+  padding: 6px 9px;
+
+  border-radius: 999px;
+
+  background: var(--color-background);
+  color: var(--color-soft-brown);
+
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+@media (max-width: 950px) {
+  .destination-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 /* =========================================================
    MOBILE
@@ -344,4 +528,211 @@
   .vibe-list {
     margin-top: 20px;
   }
+
+  .discover {
+    padding: 55px 20px 70px;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .discover-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .discover-image {
+    height: 230px;
+  }
+  
+  .destinations {
+    padding: 65px 20px 80px;
+  }
+
+  .destination-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .destination-photo {
+    height: 260px;
+  }
+
+  .see-more-button {
+    margin-top: 5px;
+  }
+}
+
+/* =========================================================
+   DISCOVER
+   ========================================================= */
+
+.discover {
+  padding: 70px 6% 100px;
+
+  background: var(--color-surface);
+}
+
+.section-heading {
+  max-width: 1200px;
+
+  margin: 0 auto 32px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.section-label {
+  margin: 0 0 8px;
+
+  color: var(--color-orange);
+
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.section-heading h2 {
+  margin: 0;
+
+  color: var(--color-text);
+
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: -0.04em;
+}
+
+.section-description {
+  margin: 0 0 5px;
+
+  color: var(--color-muted);
+
+  font-size: 0.95rem;
+}
+
+
+/* Cards */
+
+.discover-grid {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.discover-card {
+  overflow: hidden;
+
+  background: var(--color-background);
+
+  border: 1px solid #ead7ba;
+  border-radius: 20px;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.discover-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 14px 30px rgba(81, 54, 41, 0.1);
+}
+
+.discover-image {
+  height: 260px;
+
+  position: relative;
+
+  display: flex;
+  align-items: flex-end;
+
+  padding: 18px;
+
+  background-position: center;
+  background-size: cover;
+}
+
+.discover-image::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(45, 28, 20, 0.5),
+    transparent 55%
+  );
+}
+
+.discover-image span {
+  position: relative;
+  z-index: 1;
+
+  padding: 7px 11px;
+
+  border-radius: 999px;
+
+  background: var(--color-yellow);
+  color: var(--color-dark-brown);
+
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+
+/* Temporary homepage imagery */
+
+.beach-image {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.05)
+    ),
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+}
+
+.mountain-image {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.05)
+    ),
+    url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b");
+}
+
+.city-image {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.05)
+    ),
+    url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df");
+}
+
+.discover-card-content {
+  padding: 20px;
+}
+
+.discover-card-content h3 {
+  margin: 0 0 7px;
+
+  color: var(--color-text);
+
+  font-size: 1.15rem;
+}
+
+.discover-card-content p {
+  margin: 0;
+
+  color: var(--color-muted);
+
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
