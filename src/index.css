@@ -1,19 +1,24 @@
 :root {
   font-family: Arial, Helvetica, sans-serif;
 
-  --color-background: #fdfaf3;
-  --color-surface: #fff1d6;
+  --color-background: #faf9f6;
+  --color-surface: #ffffff;
 
-  --color-text: #513629;
-  --color-muted: #8d705e;
+  --color-text: #25231f;
+  --color-muted: #77736b;
 
-  --color-brown: #6f4935;
-  --color-soft-brown: #9a6543;
-  --color-dark-brown: #513629;
+  --color-dark-brown: #25231f;
+  --color-brown: #4f4b44;
+  --color-soft-brown: #77736b;
 
-  --color-yellow: #f6c453;
-  --color-orange: #eeb789;
-  --color-red-orange: #d96c4a;
+  /* Main TripGenda accent */
+  --color-orange: #e8c96a;
+
+  --color-yellow: #fff3c4;
+  --color-red-orange: #ddb955;
+
+  --color-border: #e7e3db;
+  --color-selected: #fff8dd;
 
   background: var(--color-background);
   color: var(--color-text);

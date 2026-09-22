@@ -2,7 +2,7 @@ function Navbar() {
   return (
     <header className="navbar">
       <a className="logo" href="/">
-        <span className="logo-mark">✦</span>
+        {/* <span className="logo-mark">✦</span> */}
         TripGenda
       </a>
 
