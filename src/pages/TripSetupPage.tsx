@@ -10,7 +10,7 @@ import type {
   TripVibe,
   WeatherPreference,
 } from '../types/trip'
-
+import { useNavigate } from 'react-router-dom'
 
 function TripSetupPage() {
   const [origin, setOrigin] = useState('')
@@ -30,6 +30,7 @@ function TripSetupPage() {
     useState<TripVibe[]>([])
   const [activityLevel, setActivityLevel] =
     useState<ActivityLevel | ''>('')
+  const navigate = useNavigate()
 
 useEffect(() => {
   const savedPreferences = localStorage.getItem(
@@ -115,6 +116,7 @@ useEffect(() => {
         'tripgenda-trip-preferences',
         JSON.stringify(tripPreferences)
     )
+    navigate('/destinations')
     }
 
 

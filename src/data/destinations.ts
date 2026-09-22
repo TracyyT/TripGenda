@@ -9,6 +9,9 @@ export const destinations: Destination[] = [
     image:
       'https://images.unsplash.com/photo-1538964173425-93884d739596',
     tags: ['Beach', 'Food', 'Relaxed'],
+    temperature: 'warm',
+    vibes: ['beach', 'food', 'relaxing'],
+    activityLevels: ['relaxed', 'balanced', 'active'],
   },
   {
     id: 2,
@@ -18,6 +21,9 @@ export const destinations: Destination[] = [
     image:
       'https://images.unsplash.com/photo-1502175353174-a7a70e73b362',
     tags: ['City', 'Nature', 'Food'],
+    temperature: 'mild',
+    vibes: ['city', 'food', 'nature'],
+    activityLevels: ['relaxed', 'balanced', 'active'],
   },
 {
     id: 3,
@@ -27,6 +33,9 @@ export const destinations: Destination[] = [
     image:
       'https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=1200&q=80',
     tags: ['City', 'Food', 'Shopping'],
+    temperature: 'mild',
+    vibes: ['city', 'food', 'adventure'],
+    activityLevels: ['balanced', 'active'],
   },
   {
     id: 4,
@@ -36,5 +45,8 @@ export const destinations: Destination[] = [
     image:
       'https://images.unsplash.com/photo-1509316785289-025f5b846b35',
     tags: ['Nature', 'Adventure', 'Relaxed'],
+    temperature: 'warm',
+    vibes: ['mountains', 'nature', 'relaxing', 'adventure'],
+    activityLevels: ['balanced', 'active'],
   },
 ]

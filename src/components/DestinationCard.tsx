@@ -1,6 +1,9 @@
 import type { Destination } from '../types/destination'
 
-type DestinationCardProps = Omit<Destination, 'id'>
+type DestinationCardProps = Pick<
+  Destination,
+  'city' | 'state' | 'description' | 'image' | 'tags'
+>
 
 function DestinationCard({
   city,
