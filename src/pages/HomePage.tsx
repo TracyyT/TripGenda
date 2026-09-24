@@ -115,7 +115,7 @@ function HomePage() {
       </div>
 
       <div className="destination-grid">
-        {destinations.map((destination) => (
+        {destinations.slice(0, 4).map((destination) => (
             <DestinationCard
               key={destination.id}
               city={destination.city}

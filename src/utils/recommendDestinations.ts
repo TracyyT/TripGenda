@@ -31,10 +31,20 @@ export function scoreDestination(
   score += matchingVibes.length * 2
 
   if (matchingVibes.length > 0) {
-    reasons.push(
-      `Matches ${matchingVibes.length} of your trip vibes`
-    )
-  }
+    const formattedVibes = matchingVibes
+        .map((vibe) =>
+        vibe
+            .split('-')
+            .map(
+            (word) =>
+                word.charAt(0).toUpperCase() + word.slice(1)
+            )
+            .join(' ')
+        )
+        .join(' + ')
+
+    reasons.push(`${formattedVibes} match your trip vibe`)
+    }
 
   // Activity level match
   if (

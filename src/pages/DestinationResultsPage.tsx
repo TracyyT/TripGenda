@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar'
 import { destinations } from '../data/destinations'
 import { recommendDestinations } from '../utils/recommendDestinations'
 import type { TripPreferences } from '../types/trip'
+import RecommendationCard from '../components/RecommendationCard'
 
 function DestinationResultsPage() {
   const savedPreferences = localStorage.getItem(
@@ -31,32 +32,33 @@ function DestinationResultsPage() {
   )
 
   return (
-    <div>
-      <Navbar />
+    <div className="destination-results-page">
+        <Navbar />
 
-      <main>
-        <h1>Your next trip starts here.</h1>
-        <p>
-          We found destinations that match your trip preferences.
-        </p>
+        <main className="destination-results-main">
+        <header className="destination-results-header">
+            <p className="results-eyebrow">
+            YOUR TRIP MATCHES
+            </p>
 
-        <div>
-          {recommendations.map((result, index) => (
-            <div key={result.destination.id}>
-              <h2>
-                #{index + 1} {result.destination.city},{' '}
-                {result.destination.state}
-              </h2>
+            <h1>Your next trip starts here.</h1>
 
-              <p>Match score: {result.score}</p>
+            <p>
+            Based on your travel style, weather preferences,
+            and the kind of trip you're looking for.
+            </p>
+        </header>
 
-              {result.reasons.map((reason) => (
-                <p key={reason}>{reason}</p>
-              ))}
-            </div>
-          ))}
+        <div className="recommendation-grid">
+            {recommendations.slice(0, 6).map((result, index) => (
+            <RecommendationCard
+                key={result.destination.id}
+                result={result}
+                rank={index + 1}
+            />
+            ))}
         </div>
-      </main>
+        </main>
     </div>
   )
 }
