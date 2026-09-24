@@ -11,6 +11,7 @@ import type {
   WeatherPreference,
 } from '../types/trip'
 import { useNavigate } from 'react-router-dom'
+import { geocodeLocation } from '../services/geocoding'
 
 function TripSetupPage() {
   const [origin, setOrigin] = useState('')
@@ -87,9 +88,42 @@ useEffect(() => {
     tripVibes.length > 0 &&
     activityLevel != ''
 
-    const tripPreferences: TripPreferences | null = canContinue
-    ? {
+    // const tripPreferences: TripPreferences | null = canContinue
+    // ? {
+    //     origin: origin.trim(),
+
+    //     startDate,
+    //     endDate,
+    //     tripLength,
+
+    //     travelTolerance,
+    //     transportBudget,
+    //     transportPreference,
+
+    //     temperaturePreference,
+    //     weatherPreferences,
+
+    //     tripVibes,
+    //     activityLevel,
+    //     }
+    // : null
+
+  async function handleContinue() {
+    if (!canContinue) {
+        return
+    }
+
+    try {
+        const originLocation = await geocodeLocation(origin)
+
+        if (!originLocation) {
+        console.error('Origin could not be found')
+        return
+        }
+
+        const tripPreferences: TripPreferences = {
         origin: origin.trim(),
+        originLocation,
 
         startDate,
         endDate,
@@ -105,18 +139,16 @@ useEffect(() => {
         tripVibes,
         activityLevel,
         }
-    : null
 
-  function handleContinue() {
-    if (!tripPreferences) {
-        return
-    }
-
-    localStorage.setItem(
+        localStorage.setItem(
         'tripgenda-trip-preferences',
         JSON.stringify(tripPreferences)
-    )
-    navigate('/destinations')
+        )
+
+        navigate('/destinations')
+    } catch (error) {
+        console.error('Unable to find origin:', error)
+    }
     }
 
 

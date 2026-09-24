@@ -45,8 +45,15 @@ export type ActivityLevel =
   | 'active'
   | 'any'
 
+  export type OriginLocation = {
+    latitude: number
+    longitude: number
+    displayName: string
+  }
+
 export type TripPreferences = {
   origin: string
+  originLocation: OriginLocation
 
   startDate: string
   endDate: string

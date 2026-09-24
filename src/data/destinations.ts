@@ -12,6 +12,7 @@ export const destinations: Destination[] = [
     temperature: 'warm',
     vibes: ['beach', 'food', 'relaxing'],
     activityLevels: ['relaxed', 'balanced', 'active'],
+    idealTripLength: { min: 3, max: 6 },
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ export const destinations: Destination[] = [
     temperature: 'mild',
     vibes: ['city', 'food', 'nature'],
     activityLevels: ['relaxed', 'balanced', 'active'],
+    idealTripLength: { min: 3, max: 5 },
   },
 {
     id: 3,
@@ -36,6 +38,7 @@ export const destinations: Destination[] = [
     temperature: 'mild',
     vibes: ['city', 'food', 'adventure'],
     activityLevels: ['balanced', 'active'],
+    idealTripLength: { min: 4, max: 7 },
   },
   {
     id: 4,
@@ -48,6 +51,7 @@ export const destinations: Destination[] = [
     temperature: 'warm',
     vibes: ['mountains', 'nature', 'relaxing', 'adventure'],
     activityLevels: ['balanced', 'active'],
+    idealTripLength: { min: 2, max: 4 },
   },
   {
     id: 5,
@@ -61,6 +65,7 @@ export const destinations: Destination[] = [
     temperature: 'hot',
     vibes: ['beach', 'city', 'food', 'adventure'],
     activityLevels: ['balanced', 'active'],
+    idealTripLength: { min: 3, max: 5 },
     },
     {
     id: 6,
@@ -74,6 +79,7 @@ export const destinations: Destination[] = [
     temperature: 'mild',
     vibes: ['mountains', 'city', 'nature', 'adventure'],
     activityLevels: ['balanced', 'active'],
+    idealTripLength: { min: 3, max: 6 },
     },
     {
     id: 7,
@@ -87,6 +93,7 @@ export const destinations: Destination[] = [
     temperature: 'warm',
     vibes: ['food', 'city', 'relaxing'],
     activityLevels: ['relaxed', 'balanced'],
+    idealTripLength: { min: 2, max: 4 },
     },
     {
     id: 8,
@@ -100,6 +107,7 @@ export const destinations: Destination[] = [
     temperature: 'mild',
     vibes: ['city', 'food', 'adventure'],
     activityLevels: ['balanced', 'active'],
+    idealTripLength: { min: 3, max: 5 },
     },
     {
     id: 9,
@@ -113,6 +121,7 @@ export const destinations: Destination[] = [
     temperature: 'hot',
     vibes: ['beach', 'nature', 'food', 'relaxing', 'adventure'],
     activityLevels: ['relaxed', 'balanced', 'active'],
+    idealTripLength: { min: 5, max: 8 },
     },
     {
     id: 10,
@@ -126,6 +135,7 @@ export const destinations: Destination[] = [
     temperature: 'mild',
     vibes: ['city', 'food', 'nature', 'relaxing'],
     activityLevels: ['relaxed', 'balanced'],
+    idealTripLength: { min: 3, max: 5 },
     },
     {
     id: 11,
@@ -139,6 +149,7 @@ export const destinations: Destination[] = [
     temperature: 'mild',
     vibes: ['mountains', 'nature', 'food', 'relaxing'],
     activityLevels: ['relaxed', 'balanced', 'active'],
+    idealTripLength: { min: 2, max: 4 },
     },
     {
     id: 12,
@@ -152,5 +163,6 @@ export const destinations: Destination[] = [
     temperature: 'hot',
     vibes: ['city', 'food', 'adventure', 'quick-getaway'],
     activityLevels: ['balanced', 'active'],
+    idealTripLength: { min: 2, max: 4 },
     },
 ]

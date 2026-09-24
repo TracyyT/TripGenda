@@ -13,7 +13,17 @@ export type Destination = {
   image: string
   tags: string[]
 
+  coordinates?: {
+    latitude: number
+    longitude: number
+  }
+
   temperature: Exclude<TemperaturePreference, 'any'>
   vibes: TripVibe[]
   activityLevels: Exclude<ActivityLevel, 'any'>[]
+
+  idealTripLength: {
+    min: number
+    max: number
+  }
 }

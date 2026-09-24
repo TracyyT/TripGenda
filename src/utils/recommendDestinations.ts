@@ -55,6 +55,17 @@ export function scoreDestination(
     reasons.push('Fits your preferred travel pace')
   }
 
+  if (
+    preferences.tripLength >= destination.idealTripLength.min &&
+    preferences.tripLength <= destination.idealTripLength.max
+    ) {
+    score += 2
+
+    reasons.push(
+        `${preferences.tripLength} days is a good fit for this destination`
+    )
+    }
+
   return {
     destination,
     score,
