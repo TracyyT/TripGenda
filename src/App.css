@@ -1589,3 +1589,9 @@
     height: 230px;
   }
 }
+
+.field-error {
+  margin: 0.5rem 0 0;
+  color: #b44a35;
+  font-size: 0.9rem;
+}

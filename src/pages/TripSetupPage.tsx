@@ -32,6 +32,8 @@ function TripSetupPage() {
   const [activityLevel, setActivityLevel] =
     useState<ActivityLevel | ''>('')
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
+  const [originError, setOriginError] = useState('')
 
 useEffect(() => {
   const savedPreferences = localStorage.getItem(
@@ -109,15 +111,20 @@ useEffect(() => {
     // : null
 
   async function handleContinue() {
-    if (!canContinue) {
+    if (!canContinue || isLoading) {
         return
     }
+
+    setIsLoading(true)
+    setOriginError('')
 
     try {
         const originLocation = await geocodeLocation(origin)
 
         if (!originLocation) {
-        console.error('Origin could not be found')
+        setOriginError(
+            "We couldn't find that city or ZIP code. Try a more specific location."
+        )
         return
         }
 
@@ -148,6 +155,12 @@ useEffect(() => {
         navigate('/destinations')
     } catch (error) {
         console.error('Unable to find origin:', error)
+
+        setOriginError(
+        "We couldn't verify that location right now. Please try again."
+        )
+    } finally {
+        setIsLoading(false)
     }
     }
 
@@ -177,12 +190,19 @@ useEffect(() => {
             </p>
 
             <input
-              id="origin"
-              type="text"
-              placeholder="e.g. College Station, TX"
-              value={origin}
-              onChange={(event) => setOrigin(event.target.value)}
+                id="origin"
+                type="text"
+                placeholder="e.g. College Station, TX"
+                value={origin}
+                onChange={(event) => {
+                    setOrigin(event.target.value)
+                    setOriginError('')
+                }}
             />
+
+            {originError && (
+                <p className="field-error">{originError}</p>
+            )}
           </div>
 
           <div className="date-fields">
@@ -551,11 +571,15 @@ useEffect(() => {
         <button
             className="continue-button"
             type="button"
-            disabled={!canContinue}
+            disabled={!canContinue || isLoading}
             onClick={handleContinue}
             >
-            Continue <span>→</span>
-            </button>
+            {isLoading ? (
+                'Finding your location...'
+            ) : (
+                <>Continue <span>→</span></>
+            )}
+          </button>
         </div>
       </main>
     </div>
