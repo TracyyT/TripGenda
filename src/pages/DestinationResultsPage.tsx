@@ -3,8 +3,16 @@ import { destinations } from '../data/destinations'
 import { recommendDestinations } from '../utils/recommendDestinations'
 import type { TripPreferences } from '../types/trip'
 import RecommendationCard from '../components/RecommendationCard'
+import { useEffect } from 'react'
 
 function DestinationResultsPage() {
+  useEffect(() => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+    })
+  }, [])
+
   const savedPreferences = localStorage.getItem(
     'tripgenda-trip-preferences'
   )

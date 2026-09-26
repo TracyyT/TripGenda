@@ -38,6 +38,9 @@ function RecommendationCard({
             <p className="recommendation-state">
               {destination.state}
             </p>
+            <p>
+                About {Math.round(result.distanceMiles).toLocaleString()} miles away
+            </p>
           </div>
         </div>
 

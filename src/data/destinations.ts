@@ -13,6 +13,10 @@ export const destinations: Destination[] = [
     vibes: ['beach', 'food', 'relaxing'],
     activityLevels: ['relaxed', 'balanced', 'active'],
     idealTripLength: { min: 3, max: 6 },
+    coordinates: {
+        latitude: 32.7157,
+        longitude: -117.1611,
+    },
   },
   {
     id: 2,
@@ -26,6 +30,10 @@ export const destinations: Destination[] = [
     vibes: ['city', 'food', 'nature'],
     activityLevels: ['relaxed', 'balanced', 'active'],
     idealTripLength: { min: 3, max: 5 },
+    coordinates: {
+        latitude: 47.6062,
+        longitude: -122.3321,
+    },
   },
 {
     id: 3,
@@ -39,6 +47,10 @@ export const destinations: Destination[] = [
     vibes: ['city', 'food', 'adventure'],
     activityLevels: ['balanced', 'active'],
     idealTripLength: { min: 4, max: 7 },
+    coordinates: {
+        latitude: 40.7128,
+        longitude: -74.0060,
+    },
   },
   {
     id: 4,
@@ -52,6 +64,10 @@ export const destinations: Destination[] = [
     vibes: ['mountains', 'nature', 'relaxing', 'adventure'],
     activityLevels: ['balanced', 'active'],
     idealTripLength: { min: 2, max: 4 },
+    coordinates: {
+        latitude: 34.8697,
+        longitude: -111.7610,
+    },
   },
   {
     id: 5,
@@ -66,6 +82,10 @@ export const destinations: Destination[] = [
     vibes: ['beach', 'city', 'food', 'adventure'],
     activityLevels: ['balanced', 'active'],
     idealTripLength: { min: 3, max: 5 },
+    coordinates: {
+        latitude: 25.7617,
+        longitude: -80.1918,
+    },
     },
     {
     id: 6,
@@ -80,6 +100,10 @@ export const destinations: Destination[] = [
     vibes: ['mountains', 'city', 'nature', 'adventure'],
     activityLevels: ['balanced', 'active'],
     idealTripLength: { min: 3, max: 6 },
+    coordinates: {
+        latitude: 39.7392,
+        longitude: -104.9903,
+    },
     },
     {
     id: 7,
@@ -94,6 +118,10 @@ export const destinations: Destination[] = [
     vibes: ['food', 'city', 'relaxing'],
     activityLevels: ['relaxed', 'balanced'],
     idealTripLength: { min: 2, max: 4 },
+    coordinates: {
+        latitude: 32.7765,
+        longitude: -79.9311,
+    },
     },
     {
     id: 8,
@@ -108,6 +136,10 @@ export const destinations: Destination[] = [
     vibes: ['city', 'food', 'adventure'],
     activityLevels: ['balanced', 'active'],
     idealTripLength: { min: 3, max: 5 },
+    coordinates: {
+        latitude: 41.8781,
+        longitude: -87.6298,
+    },
     },
     {
     id: 9,
@@ -122,6 +154,10 @@ export const destinations: Destination[] = [
     vibes: ['beach', 'nature', 'food', 'relaxing', 'adventure'],
     activityLevels: ['relaxed', 'balanced', 'active'],
     idealTripLength: { min: 5, max: 8 },
+    coordinates: {
+        latitude: 21.3099,
+        longitude: -157.8581,
+    },
     },
     {
     id: 10,
@@ -136,6 +172,10 @@ export const destinations: Destination[] = [
     vibes: ['city', 'food', 'nature', 'relaxing'],
     activityLevels: ['relaxed', 'balanced'],
     idealTripLength: { min: 3, max: 5 },
+    coordinates: {
+        latitude: 45.5152,
+        longitude: -122.6784,
+    },
     },
     {
     id: 11,
@@ -150,6 +190,10 @@ export const destinations: Destination[] = [
     vibes: ['mountains', 'nature', 'food', 'relaxing'],
     activityLevels: ['relaxed', 'balanced', 'active'],
     idealTripLength: { min: 2, max: 4 },
+    coordinates: {
+        latitude: 35.5951,
+        longitude: -82.5515,
+    },
     },
     {
     id: 12,
@@ -164,5 +208,9 @@ export const destinations: Destination[] = [
     vibes: ['city', 'food', 'adventure', 'quick-getaway'],
     activityLevels: ['balanced', 'active'],
     idealTripLength: { min: 2, max: 4 },
+    coordinates: {
+        latitude: 30.2672,
+        longitude: -97.7431,
+    },
     },
 ]

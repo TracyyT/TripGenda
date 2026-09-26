@@ -3,6 +3,7 @@ import type {
   TemperaturePreference,
   TripVibe,
 } from './trip'
+import type { Coordinates } from './location'
 
 export type Destination = {
   id: number
@@ -13,10 +14,7 @@ export type Destination = {
   image: string
   tags: string[]
 
-  coordinates?: {
-    latitude: number
-    longitude: number
-  }
+  coordinates: Coordinates
 
   temperature: Exclude<TemperaturePreference, 'any'>
   vibes: TripVibe[]

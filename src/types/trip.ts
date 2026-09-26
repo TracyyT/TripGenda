@@ -1,3 +1,5 @@
+import type { Coordinates } from './location'
+
 export type TravelTolerance =
   | 'short'
   | 'medium'
@@ -45,9 +47,7 @@ export type ActivityLevel =
   | 'active'
   | 'any'
 
-  export type OriginLocation = {
-    latitude: number
-    longitude: number
+  export type OriginLocation = Coordinates & {
     displayName: string
   }
 
