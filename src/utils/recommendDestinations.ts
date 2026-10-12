@@ -1,12 +1,17 @@
 import type { Destination } from '../types/destination'
 import type { TripPreferences } from '../types/trip'
 import { calculateDistanceMiles } from './distance'
+import {
+  getDistanceCategory,
+  type DistanceCategory,
+} from './transportation'
 
 export type ScoredDestination = {
   destination: Destination
   score: number
   reasons: string[]
   distanceMiles: number
+  distanceCategory: DistanceCategory
 }
 
 export function scoreDestination(
@@ -20,6 +25,7 @@ export function scoreDestination(
     preferences.originLocation,
     destination.coordinates
   )
+  const distanceCategory = getDistanceCategory(distanceMiles)
 
   // Temperature match
   if (
@@ -78,6 +84,7 @@ export function scoreDestination(
     score,
     reasons,
     distanceMiles,
+    distanceCategory,
   }
 }
 
