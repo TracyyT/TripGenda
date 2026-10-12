@@ -16,3 +16,21 @@ export function getDistanceCategory(
 
   return 'long-distance'
 }
+
+export type TransportationAssessment = {
+  distanceCategory: DistanceCategory
+  needsRouteCheck: boolean
+  needsFlightCheck: boolean
+}
+
+export function assessTransportation(
+  distanceMiles: number
+): TransportationAssessment {
+  const distanceCategory = getDistanceCategory(distanceMiles)
+
+  return {
+    distanceCategory,
+    needsRouteCheck: true,
+    needsFlightCheck: distanceCategory === 'long-distance',
+  }
+}
